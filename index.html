@@ -1,95 +1,742 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KHALIFA ANALYTICS - Analyses & Pronostics</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #101827;
-  color: white;
-  text-align: center;
-}
-header {
-  background: #07111f;
-  padding: 30px 10px;
-  border-bottom: 3px solid #00d084;
-}
-h1 {
-  color: #00d084;
-  font-size: 30px;
-}
-main {
-  padding: 20px 15px;
-}
-.card {
-  background: #1d2a3d;
-  padding: 25px;
-  margin: 20px auto;
-  border-radius: 12px;
-  max-width: 500px;
-}
-h2 {
-  color: #00d084;
-}
-button {
-  background: #00d084;
-  color: #07111f;
-  border: none;
-  padding: 13px 25px;
-  border-radius: 7px;
-  font-weight: bold;
-}
-footer {
-  background: #07111f;
-  padding: 20px;
-  color: #aaa;
-}
-</style>
+    <meta name="description" content="KHALIFA ANALYTICS - Analyses statistiques et pronostics sportifs basés sur les données.">
+
+    <title>KHALIFA ANALYTICS | Football Intelligence</title>
+
+    <style>
+        :root {
+            --background: #090b0e;
+            --surface: #12161c;
+            --surface-light: #1b222b;
+            --gold: #d6ad52;
+            --white: #ffffff;
+            --muted: #9ba4af;
+            --green: #35c98b;
+            --red: #ed6565;
+            --border: #29313b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--white);
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .site-header {
+            background: #10141a;
+            border-bottom: 1px solid var(--border);
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo strong {
+            color: var(--gold);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 22px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--gold);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 17px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            border: 1px solid var(--gold);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #101010;
+        }
+
+        .btn-secondary {
+            color: var(--gold);
+        }
+
+        .hero {
+            padding: 65px 6% 55px;
+            background:
+                radial-gradient(ellipse at top right, #40351b 0%, transparent 50%),
+                #0d1117;
+        }
+
+        .hero-label {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 52px);
+            margin: 14px 0;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .hero .btn {
+            display: inline-block;
+        }
+
+        .dashboard-container {
+            padding: 35px 6%;
+            max-width: 1500px;
+            margin: auto;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            font-size: 23px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 45px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .stat-card span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .stat-card h3 {
+            color: var(--gold);
+            font-size: 23px;
+            margin-top: 8px;
+        }
+
+        .filters-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 9px 16px;
+            border-radius: 25px;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gold);
+            color: #111;
+            border-color: var(--gold);
+        }
+
+        .predictions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .match-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .match-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .league-tag {
+            color: var(--gold);
+            font-size: 12px;
+        }
+
+        .status-tag {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .match-teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .team {
+            flex: 1;
+        }
+
+        .team-icon {
+            width: 48px;
+            height: 48px;
+            margin: auto auto 8px;
+            border-radius: 50%;
+            background: var(--surface-light);
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .match-score {
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .ai-analysis-block {
+            background: #0c1117;
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 22px;
+        }
+
+        .prediction-outcome {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 13px;
+        }
+
+        .prediction-outcome strong {
+            color: var(--gold);
+        }
+
+        .probability-wrapper {
+            margin-top: 14px;
+        }
+
+        .probability-wrapper span {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .match-actions {
+            margin-top: 18px;
+        }
+
+        .btn-card-details {
+            display: block;
+            text-align: center;
+            background: var(--gold);
+            color: #111;
+        }
+
+        .empty-state {
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            padding: 35px 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: var(--muted);
+            grid-column: 1 / -1;
+        }
+
+        .empty-state strong {
+            display: block;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .analysis-card {
+            background: var(--surface);
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .analysis-card h3 {
+            color: var(--gold);
+            margin-bottom: 9px;
+            font-size: 16px;
+        }
+
+        .analysis-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .methodology {
+            margin-top: 45px;
+        }
+
+        .method-list {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 22px;
+            border-radius: 10px;
+        }
+
+        .method-list li {
+            margin: 9px 0 9px 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .site-footer {
+            margin-top: 50px;
+            background: #10141a;
+            border-top: 1px solid var(--border);
+            padding: 30px 6%;
+            text-align: center;
+        }
+
+        .footer-warning {
+            color: #e8c878;
+            font-size: 12px;
+            max-width: 850px;
+            margin: auto auto 20px;
+        }
+
+        .footer-links {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gold);
+            margin: 0 8px;
+        }
+
+        .footer-links p {
+            margin-bottom: 10px;
+        }
+
+        .disclaimer {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 15px;
+        }
+
+        section[id] {
+            scroll-margin-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .site-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                gap: 14px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .predictions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 45px;
+            }
+
+            .dashboard-container {
+                padding: 28px 5%;
+            }
+
+            .header-actions {
+                width: 100%;
+            }
+
+            .header-actions .btn {
+                text-align: center;
+                flex: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-<h1>KHALIFA ANALYTICS</h1>
-<p>ANALYSES & PRONOSTICS FOOTBALLISTIQUES</p>
-</header>
+    <header class="site-header">
+        <div class="logo">
+            KHALIFA <strong>ANALYTICS</strong>
+        </div>
 
-<main>
+        <nav aria-label="Menu principal">
+            <ul>
+                <li><a href="#accueil" class="active">Accueil</a></li>
+                <li><a href="#matchs">Matchs du jour</a></li>
+                <li><a href="#analyses">Analyses</a></li>
+                <li><a href="#pronostics">Pronostics</a></li>
+            </ul>
+        </nav>
 
-<div class="card">
-<h2>Bienvenue sur KHALIFA ANALYTICS</h2>
-<p>La plateforme dédiée aux analyses et pronostics de football.</p>
-<p>Des analyses basées sur les statistiques, les performances et les probabilités.</p>
-</div>
+        <div class="header-actions">
+            <a href="#analyses" class="btn btn-secondary">Découvrir</a>
+            <a href="#matchs" class="btn btn-primary">Voir les matchs</a>
+        </div>
+    </header>
 
-<div class="card">
-<h2>⚽ ANALYSES DES MATCHS</h2>
-<p>Étude approfondie des rencontres :</p>
-<p>Forme des équipes • xG • Compositions • Absences • Statistiques</p>
-</div>
+    <section class="hero" id="accueil">
+        <div class="hero-label">FOOTBALL INTELLIGENCE</div>
 
-<div class="card">
-<h2>🎯 PRONOSTICS FOOTBALL</h2>
-<p>Découvrez nos propositions de paris :</p>
-<p>Double chance • Plus/Moins de buts • Les deux équipes marquent • Résultats</p>
-</div>
+        <h1>
+            L'analyse avant <span>le pronostic.</span>
+        </h1>
 
-<div class="card">
-<h2>Notre objectif</h2>
-<p>Vous aider à mieux comprendre les matchs grâce à une analyse statistique rigoureuse.</p>
-<p>Aucun pronostic ne garantit un gain.</p>
-</div>
+        <p>
+            Bienvenue sur KHALIFA ANALYTICS.
+            Une plateforme consacrée à l'analyse statistique
+            du football, aux probabilités et à la recherche
+            de valeur dans les cotes.
+        </p>
 
-</main>
+        <a href="#analyses" class="btn btn-primary">
+            Découvrir notre méthode
+        </a>
+    </section>
 
-<footer>
-<p>© 2026 KHALIFA ANALYTICS</p>
-<p>Analyse intelligente • Pronostics responsables</p>
-</footer>
+    <main class="dashboard-container">
+
+        <section aria-label="Tableau de bord">
+            <div class="section-heading">
+                <h2>Tableau de bord</h2>
+                <p>Les indicateurs de notre plateforme.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span>Matchs analysés</span>
+                    <h3>À venir</h3>
+                </div>
+
+                <div class="stat-card">
+                    <span>Pronostics publiés</span>
+                    <h3>À venir</h3>
+                </div>
+
+                <div class="stat-card">
+                    <span>Précision statistique</span>
+                    <h3>À mesurer</h3>
+                </div>
+
+                <div class="stat-card">
+                    <span>Performance</span>
+                    <h3>À mesurer</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="matchs">
+            <div class="section-heading">
+                <h2>Matchs du jour</h2>
+                <p>Les rencontres sélectionnées pour l'analyse.</p>
+            </div>
+
+            <div class="filters-bar">
+                <button class="filter-btn active" data-filter="all">
+                    Tous les sports
+                </button>
+
+                <button class="filter-btn" data-filter="football">
+                    ⚽ Football
+                </button>
+
+                <button class="filter-btn" data-filter="basketball">
+                    🏀 Basketball
+                </button>
+
+                <button class="filter-btn" data-filter="tennis">
+                    🎾 Tennis
+                </button>
+            </div>
+
+            <div class="predictions-grid" id="match-list">
+
+                <article class="empty-state" data-sport="football">
+                    <strong>⚽ Espace des matchs de football</strong>
+                    Aucun match réel n'est encore connecté.
+                    Les rencontres seront ajoutées après la mise
+                    en place de notre source de données sportives.
+                </article>
+
+                <article class="empty-state" data-sport="basketball">
+                    <strong>🏀 Espace basketball</strong>
+                    Les rencontres seront affichées ici
+                    lorsque les données seront disponibles.
+                </article>
+
+                <article class="empty-state" data-sport="tennis">
+                    <strong>🎾 Espace tennis</strong>
+                    Les rencontres seront affichées ici
+                    lorsque les données seront disponibles.
+                </article>
+
+            </div>
+        </section>
+
+        <section id="analyses" style="margin-top: 50px;">
+
+            <div class="section-heading">
+                <h2>Notre méthode d'analyse</h2>
+                <p>
+                    Les critères utilisés pour étudier chaque rencontre.
+                </p>
+            </div>
+
+            <div class="analysis-grid">
+
+                <article class="analysis-card">
+                    <h3>📊 Expected Goals (xG)</h3>
+                    <p>
+                        Étude des buts attendus, des occasions créées
+                        et de la qualité des occasions concédées.
+                    </p>
+                </article>
+
+                <article class="analysis-card">
+                    <h3>🏠 Domicile / Extérieur</h3>
+                    <p>
+                        Comparaison des performances à domicile
+                        et à l'extérieur pour chaque équipe.
+                    </p>
+                </article>
+
+                <article class="analysis-card">
+                    <h3>⚕️ Absences</h3>
+                    <p>
+                        Étude des blessures, suspensions
+                        et joueurs indisponibles.
+                    </p>
+                </article>
+
+                <article class="analysis-card">
+                    <h3>⚽ Attaque et défense</h3>
+                    <p>
+                        Évaluation de la qualité offensive,
+                        défensive et de la régularité des équipes.
+                    </p>
+                </article>
+
+                <article class="analysis-card">
+                    <h3>📋 Compositions</h3>
+                    <p>
+                        Analyse des onze probables, des systèmes
+                        tactiques et des joueurs titulaires.
+                    </p>
+                </article>
+
+                <article class="analysis-card">
+                    <h3>💰 Cotes et probabilités</h3>
+                    <p>
+                        Comparaison des probabilités estimées
+                        avec les cotes des bookmakers pour
+                        rechercher une éventuelle valeur.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="pronostics" class="methodology">
+
+            <div class="section-heading">
+                <h2>Pronostics et sélection finale</h2>
+                <p>
+                    Une sélection basée sur les données,
+                    et non uniquement sur le nom des équipes.
+                </p>
+            </div>
+
+            <div class="method-list">
+                <ul>
+                    <li>Évaluation de la probabilité de chaque scénario.</li>
+                    <li>Comparaison avec les cotes disponibles.</li>
+                    <li>Recherche du meilleur rapport risque / valeur.</li>
+                    <li>Identification des matchs équilibrés et pièges.</li>
+                    <li>Refus de forcer un résultat lorsque les données sont insuffisantes.</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section class="methodology">
+            <div class="section-heading">
+                <h2>Notre engagement</h2>
+                <p>
+                    La qualité de l'analyse passe avant
+                    la quantité de pronostics.
+                </p>
+            </div>
+
+            <div class="method-list">
+                <p style="color: var(--muted);">
+                    KHALIFA ANALYTICS privilégie une analyse
+                    rigoureuse, la transparence des données
+                    et la gestion du risque.
+                    Aucune prédiction n'est garantie.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+
+        <div class="footer-warning">
+            ⚠️ Les paris sportifs comportent des risques de pertes
+            financières et de dépendance. Réservés aux personnes
+            majeures selon la législation applicable.
+            Ne misez jamais de l'argent que vous ne pouvez pas perdre.
+        </div>
+
+        <div class="footer-links">
+            <p>
+                © 2026 KHALIFA ANALYTICS.
+                Tous droits réservés.
+            </p>
+
+            <a href="#accueil">Accueil</a>
+            <a href="#analyses">Notre méthode</a>
+            <a href="#pronostics">Pronostics</a>
+        </div>
+
+        <p class="disclaimer">
+            Les analyses sont informatives et ne constituent
+            pas une garantie de gain.
+        </p>
+
+    </footer>
+
+    <script>
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const matchCards = document.querySelectorAll("[data-sport]");
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+
+                const selected = button.dataset.filter;
+
+                filterButtons.forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                matchCards.forEach(card => {
+                    if (
+                        selected === "all" ||
+                        card.dataset.sport === selected
+                    ) {
+                        card.style.display = "block";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
