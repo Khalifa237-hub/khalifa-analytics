@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KHALIFA ANALYTICS : analyses et pronostics de football basés sur les statistiques.">
+  <title>KHALIFA ANALYTICS | Analyse et Pronostics</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #090909;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #111;
+      padding: 22px 7%;
+      border-bottom: 2px solid #d4af37;
+      text-align: center;
+    }
+
+    .logo {
+      color: #d4af37;
+      font-size: 27px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 8px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 75px 20px;
+      background: linear-gradient(135deg, #171717, #080808);
+    }
+
+    .hero h1 {
+      color: #d4af37;
+      font-size: 36px;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      color: #ccc;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .hero button {
+      margin-top: 25px;
+      padding: 13px 28px;
+      background: #d4af37;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 45px 7%;
+    }
+
+    .section-title {
+      color: #d4af37;
+      text-align: center;
+      font-size: 25px;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #171717;
+      border: 1px solid #59491c;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .card h3 {
+      color: #d4af37;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .notice {
+      background: #171717;
+      border-left: 3px solid #d4af37;
+      padding: 20px;
+      margin-top: 25px;
+      color: #ccc;
+    }
+
+    footer {
+      background: #111;
+      border-top: 1px solid #d4af37;
+      padding: 25px;
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    @media(max-width: 600px) {
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">KHALIFA ANALYTICS</div>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#analyses">Analyses</a>
+    <a href="#pronostics">Pronostics</a>
+    <a href="#apropos">À propos</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="accueil">
+    <h1>ANALYSE ET PRONOSTICS</h1>
+    <p>
+      Bienvenue sur KHALIFA ANALYTICS.
+      Découvrez des analyses football fondées sur les statistiques,
+      les performances des équipes et les données des matchs.
+    </p>
+    <button onclick="document.getElementById('analyses').scrollIntoView({behavior:'smooth'})">
+      DÉCOUVRIR NOS ANALYSES
+    </button>
+  </section>
+
+  <section id="analyses">
+    <h2 class="section-title">NOS ANALYSES FOOTBALL</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Statistiques</h3>
+        <p>Étude des résultats, des buts, des tirs et des statistiques xG.</p>
+      </div>
+
+      <div class="card">
+        <h3>Forme des équipes</h3>
+        <p>Analyse des performances à domicile et à l'extérieur.</p>
+      </div>
+
+      <div class="card">
+        <h3>Étude des cotes</h3>
+        <p>Évaluation des probabilités et du rapport entre risque et cote.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pronostics">
+    <h2 class="section-title">PRONOSTICS DU JOUR</h2>
+    <div class="card">
+      <h3>Nos prochains pronostics</h3>
+      <p>
+        Les analyses et sélections des matchs seront publiées
+        ici après étude des données disponibles.
+      </p>
+      <p style="margin-top:15px;color:#d4af37;">
+        Discipline • Statistiques • Prudence
+      </p>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <h2 class="section-title">À PROPOS DE KHALIFA ANALYTICS</h2>
+    <p style="text-align:center;color:#ccc;max-width:750px;margin:auto;">
+      KHALIFA ANALYTICS est une plateforme dédiée à l'analyse
+      statistique du football. Notre objectif est de proposer
+      des études structurées, transparentes et accessibles
+      aux passionnés de football.
+    </p>
+
+    <div class="notice">
+      <strong>AVERTISSEMENT :</strong>
+      Les pronostics sportifs comportent des risques.
+      Aucune analyse ne garantit un résultat.
+      Jouez de manière responsable.
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 KHALIFA ANALYTICS - Tous droits réservés.</p>
+  <p>Analyse football • Statistiques • Pronostics</p>
+</footer>
+
+</body>
+</html>
